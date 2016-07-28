@@ -1,0 +1,35 @@
+---
+- name: Install apt-transport-https and ca-certificates packages
+  apt: name={{item}} state=present
+  with_items:
+    - apt-transport-https
+    - ca-certificates
+
+- name: Add Docker repository key
+  apt_key:
+    id: "{{ apt_key_sig }}"
+    url: "{{ apt_key_url }}"
+    state: present
+
+- name: Add Docker repository and update apt cache
+  apt_repository:
+    repo: "{{ apt_repository }}"
+    update_cache: yes
+    state: present
+
+- name: Install linux-image-extra package required for aufs
+  apt: 
+    name: "linux-image-extra-{{ansible_kernel}}"
+    update_cache: yes
+    cache_valid_time: "{{ docker_apt_cache_valid_time }}"
+
+- name: Install docker package
+  apt:
+    name: "{{ docker_pkg_name }}"
+    update_cache: yes
+    cache_valid_time: "{{ docker_apt_cache_valid_time }}"
+
+# - name: Add the current user to docker group
+#   user: 
+#     name: "{{ ansible_user_id }}"
+#     groups: docker

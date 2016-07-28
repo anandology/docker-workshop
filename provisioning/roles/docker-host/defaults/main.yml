@@ -1,0 +1,8 @@
+
+docker_pkg_name: docker-engine
+apt_key_url: https://apt.dockerproject.org/gpg
+# apt repository key signature
+apt_key_sig: F76221572C52609D
+# Name of the apt repository for docker
+apt_repository: deb https://apt.dockerproject.org/repo ubuntu-{{ ansible_distribution_release }} main
+docker_apt_cache_valid_time: 3600
