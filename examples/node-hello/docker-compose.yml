@@ -1,0 +1,12 @@
+version: "2"
+services:
+    node: 
+      build: .
+    nginx:
+      image: nginx
+      links:
+        - node
+      volumes:
+        - ./conf.d:/etc/nginx/conf.d    
+      ports:
+        - "80:80"
