@@ -1,0 +1,10 @@
+Run nginx webserver in a container, 
+exposing port 80 to the outside world 
+and when accessed, it should show: 
+"Hello from a docker container"
+
+
+Hints:
+- Find nginx image on dockerhub
+- Find the document root from the dockerhub page
+- Add an index.html to that directory
