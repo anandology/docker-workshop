@@ -1,0 +1,10 @@
+FROM golang
+RUN mkdir /app
+WORKDIR /app
+ADD hello.go /app
+RUN go build hello.go
+
+FROM alpine
+WORKDIR /app
+COPY --from=0 /app/hello /app/
+CMD ["/app/hello"]
