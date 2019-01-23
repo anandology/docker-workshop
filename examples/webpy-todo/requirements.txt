@@ -1,1 +1,2 @@
 web.py>=0.40.dev0
+psycopg2-binary
